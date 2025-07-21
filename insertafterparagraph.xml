@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="plugin" group="content" method="upgrade">
+    <name>Insert After Paragraph</name>
+    <version>1.0.0</version>
+    <creationDate>2025-04-18</creationDate>
+    <author>LeNix Design Studio</author>
+    <authorEmail>info@lenix.rs</authorEmail>
+    <description>Inserts HTML, image, or text after a specified paragraph in Joomla articles.</description>
+    <files>
+        <filename plugin="insertafterparagraph">insertafterparagraph.php</filename>
+        <filename>insertafterparagraph.xml</filename>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="paragraph_number"
+                    type="number"
+                    label="Paragraph Number"
+                    description="The paragraph number after which to insert the content (e.g., 2 for after the second paragraph)."
+                    default="2"
+                    min="1"
+                />
+                <field
+                    name="content_type"
+                    type="list"
+                    label="Content Type"
+                    description="Select the type of content to insert."
+                    default="html"
+                >
+                    <option value="html">HTML</option>
+                    <option value="image">Image</option>
+                    <option value="text">Text</option>
+                </field>
+                <field
+                    name="html_content"
+                    type="editor"
+                    label="HTML Content"
+                    description="Enter the HTML content to insert using the WYSIWYG editor (used if Content Type is HTML)."
+                    filter="safehtml"
+                    buttons="true"
+                    showon="content_type:html"
+                />
+                <field
+                    name="image_path"
+                    type="media"
+                    label="Image (Media Manager)"
+                    description="Select an image to insert using Joomla's Media Manager (used if Content Type is Image)."
+                    showon="content_type:image"
+                />
+                <field
+                    name="image_url"
+                    type="text"
+                    label="Image URL"
+                    description="Enter a URL for the image to insert (used if Content Type is Image, overrides Media Manager selection if provided)."
+                    default=""
+                    showon="content_type:image"
+                />
+                <field
+                    name="image_alt"
+                    type="text"
+                    label="Image Alt Text"
+                    description="Alt text for the image."
+                    default=""
+                    showon="content_type:image"
+                />
+                <field
+                    name="text_content"
+                    type="textarea"
+                    label="Text Content"
+                    description="Enter the text to insert (used if Content Type is Text)."
+                    rows="5"
+                    cols="40"
+                    showon="content_type:text"
+                />
+                <field
+                    name="enabled_categories"
+                    type="category"
+                    label="Categories"
+                    description="Select categories where the plugin should be active. Leave empty to apply to all categories."
+                    extension="com_content"
+                    multiple="true"
+                />
+            </fieldset>
+        </fields>
+    </config>
+</extension>
